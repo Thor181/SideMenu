@@ -65,7 +65,7 @@
         </Grid.Triggers>
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent">
             <ListView x:Name="AppsStackPanel" Background="Transparent" AllowDrop="True" Drop="AppsStackPanel_Drop" >
-
+                
             </ListView>
         </Border>
     </Grid>

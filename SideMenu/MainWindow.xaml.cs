@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using ICO = System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ICO = System.Drawing;
 
 namespace SideMenu
 {
@@ -33,7 +33,9 @@ namespace SideMenu
 
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)
         {
-            e.Data.GetData("FileName");
+            string fileName = (string)e.Data.GetData("FileName");
+            ICO.Icon icon = ICO.Icon.ExtractAssociatedIcon(fileName);
+            
             var JUST_BREAKPOINT = string.Empty;
         }
     }

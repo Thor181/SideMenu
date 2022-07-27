@@ -1,0 +1,72 @@
+﻿<Window x:Class="SideMenu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SideMenu"
+        mc:Ignorable="d" x:Name="MainWindowX" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" 
+        Left="1919" Top="320" ShowInTaskbar="False" AllowsTransparency="True"
+        Title="MainWindow" Height="450" Width="150" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+    
+    <Grid x:Name="MainGrid" Background="Transparent"  >
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Window.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard x:Name="ShowAnim">
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         From="1919" To="1819">
+                            <DoubleAnimation.EasingFunction >
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Window.DragEnter">
+                <BeginStoryboard>
+                    <Storyboard x:Name="ShowDragAnim">
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         From="1919" To="1819">
+                            <DoubleAnimation.EasingFunction >
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Window.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard x:Name="HideAnim">
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         From="1819" To="1919">
+                            <DoubleAnimation.EasingFunction >
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Window.DragLeave">
+                <BeginStoryboard>
+                    <Storyboard x:Name="HideDragAnim">
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         From="1819" To="1919">
+                            <DoubleAnimation.EasingFunction >
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent">
+            <ListView x:Name="AppsStackPanel" Background="Transparent" AllowDrop="True" Drop="AppsStackPanel_Drop" >
+
+            </ListView>
+        </Border>
+    </Grid>
+</Window>

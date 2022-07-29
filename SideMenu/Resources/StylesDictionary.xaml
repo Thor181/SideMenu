@@ -4,27 +4,22 @@
     <Style x:Key="AppCard" TargetType="UserControl">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
-            
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <ScaleTransform ScaleX="1" ScaleY="1"></ScaleTransform>
             </Setter.Value>
         </Setter>
+        <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
-            
-            <Setter.Value >
+            <Setter.Value>
                 <ControlTemplate TargetType="UserControl">
-                    <Border x:Name="MainBorder" CornerRadius="8" Background="{TemplateBinding Background}">
-                        <ContentControl >
-                            <Grid>
-                               
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="100">
+                    <Border x:Name="MainBorder" 
+                            CornerRadius="8" 
+                            Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}">
                             </ContentPresenter>
-                                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
-                                        Height="10" Width="10"/>
-                            </Grid>
-                        </ContentControl>
                     </Border>
                     <ControlTemplate.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
@@ -32,30 +27,17 @@
                                 <BeginStoryboard>
                                     <Storyboard >
                                         <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
-                                                         To="1.2"              Duration="0:0:0.3" BeginTime="0:0:0.02" >
+                                                         To="1.2" Duration="0:0:0.3" BeginTime="0:0:0.02" >
                                             <DoubleAnimation.EasingFunction>
                                                 <BackEase Amplitude="3"/>
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
                                         <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
-                                                         To="1.2"              Duration="0:0:0.3" BeginTime="0:0:0.02" >
+                                                         To="1.2" Duration="0:0:0.3" BeginTime="0:0:0.02" >
                                             <DoubleAnimation.EasingFunction>
                                                 <BackEase Amplitude="3"/>
                                             </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
-                                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.ScaleX"
-                                                                       Duration="0:0:0.3" BeginTime="0:0:0.02" >
-                                            
-                                            <SplineDoubleKeyFrame KeySpline="0,0 0.5,0.3" KeyTime="0%" Value="1"></SplineDoubleKeyFrame>
-                                            <SplineDoubleKeyFrame KeySpline="0.5,0.3 0.5,0.7" KeyTime="50%" Value="1.1"></SplineDoubleKeyFrame>
-                                            <SplineDoubleKeyFrame KeySpline="0.5,0.7 1,1" KeyTime="100%" Value="1.2"></SplineDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="RenderTransform.ScaleY"
-                                                                       Duration="0:0:0.3" BeginTime="0:0:0.02" >
-                                            <SplineDoubleKeyFrame KeySpline="0,0 0.5,0.3" KeyTime="0%" Value="1"></SplineDoubleKeyFrame>
-                                            <SplineDoubleKeyFrame KeySpline="0.5,0.3 0.5,0.7" KeyTime="50%" Value="1.1"></SplineDoubleKeyFrame>
-                                            <SplineDoubleKeyFrame KeySpline="0.5,0.7 1,1" KeyTime="100%" Value="1.2"></SplineDoubleKeyFrame>
-                                        </DoubleAnimationUsingKeyFrames>-->
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>

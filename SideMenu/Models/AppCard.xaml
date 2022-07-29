@@ -4,13 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SideMenu.Models"
-             mc:Ignorable="d"  d:Background="red"
-             d:DesignHeight="100" d:DesignWidth="100" Style="{StaticResource AppCard}" >
+             mc:Ignorable="d" d:Background="red" 
+             Height="50" Width="50"
+             Style="{StaticResource AppCard}" Cursor="Hand">
 
-   
-    <Grid>
-        <Button Background="Green" Height="30" Width="30"
-                ></Button>
-        <!--<Border CornerRadius="8" d:Background="black"></Border>-->   
+    <Grid d:Background="Yellow"  >
+        <TextBlock Text="{Binding TextProp}" Foreground="Black" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Bottom"  ></TextBlock>
     </Grid>
 </UserControl>

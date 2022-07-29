@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 
 namespace SideMenu.Models
 {
-    /// <summary>
-    /// Логика взаимодействия для AppCard.xaml
-    /// </summary>
     public partial class AppCard : UserControl
     {
+        
         public AppCard()
         {
             InitializeComponent();
+            DataContext = new ViewModels.AppModelViewModel();
         }
     }
 }

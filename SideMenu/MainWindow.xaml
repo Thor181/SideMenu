@@ -66,7 +66,7 @@
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer Width="125" HorizontalAlignment="Left" >
                     <StackPanel x:Name="AppsStackPanel"  Margin="10 0" >
-                        <models:AppCard  Height="50" Width="50" Margin="0 5"  Background="Red"></models:AppCard>
+                        <models:AppCard Height="50" Width="50" Margin="0 5" Background="Red"></models:AppCard>
                         <models:AppCard Height="50" Width="50" Margin="0 5" Background="Red"></models:AppCard>
                         <models:AppCard Height="50" Width="50" Margin="0 5" Background="Red"></models:AppCard>
                        

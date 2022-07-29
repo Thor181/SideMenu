@@ -4,12 +4,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace SideMenu.ViewModels
 {
     public class AppModelViewModel
     {
-        public string TextProp { get; set; } = "str";
-        public string TextField = "str2";
+        public string AppName { get; set; } = "str";
+        public BitmapImage AppImage { get; set; }
+
+        public AppModelViewModel(string appName, BitmapImage appImage)
+        {
+            AppName = appName;
+            AppImage = appImage;
+        }
+    
     }
+
 }

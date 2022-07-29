@@ -9,6 +9,7 @@
              Style="{StaticResource AppCard}" Cursor="Hand">
 
     <Grid d:Background="Yellow"  >
-        <TextBlock Text="{Binding TextProp}" Foreground="Black" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Bottom"  ></TextBlock>
+        <Image Source="{Binding }"></Image>
+        <TextBlock Text="{Binding AppName}" Foreground="Black" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Bottom"  ></TextBlock>
     </Grid>
 </UserControl>

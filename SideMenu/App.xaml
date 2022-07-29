@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:SideMenu"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="pack://application:,,,/Resources/StylesDictionary.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>

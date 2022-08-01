@@ -10,15 +10,14 @@ namespace SideMenu.ViewModels
 {
     public class AppModelViewModel
     {
-        public string AppName { get; set; } = "str";
+        public string AppName { get; set; }
         public BitmapImage AppImage { get; set; }
 
-        public AppModelViewModel(string appName, BitmapImage appImage)
+        public AppModelViewModel(Models.AppModel appModel)
         {
-            AppName = appName;
-            AppImage = appImage;
+            AppName = appModel.AppName;
+            AppImage = appModel.AppImage;
         }
-    
-    }
 
+    }
 }

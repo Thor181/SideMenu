@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SideMenu.Models"
              mc:Ignorable="d" d:Background="red" 
-             Height="50" Width="50"
+             Height="50" Width="70"
              Style="{StaticResource AppCard}" Cursor="Hand">
-
-    <Grid d:Background="Yellow"  >
-        <Image Source="{Binding }"></Image>
-        <TextBlock Text="{Binding AppName}" Foreground="Black" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Bottom"  ></TextBlock>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="{Binding AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
+        <TextBlock Text="{Binding AppName}" d:Text="AppName" Grid.Row="1" Foreground="Black" FontSize="10" LineHeight="9" LineStackingStrategy="BlockLineHeight" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Bottom"  ></TextBlock>
     </Grid>
 </UserControl>

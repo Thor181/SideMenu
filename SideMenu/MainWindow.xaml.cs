@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace SideMenu
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         
@@ -33,10 +30,11 @@ namespace SideMenu
 
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)
         {
-            string fileName = (string)e.Data.GetData("FileName");
-            ICO.Icon icon = ICO.Icon.ExtractAssociatedIcon(fileName);
+            string filePath = ((string[])e.Data.GetData(DataFormats.FileDrop, false))[0];
+            AppsStackPanel.Children.Add(new Models.AppCard(filePath));
             
-            var JUST_BREAKPOINT = string.Empty;
+            
+            
         }
     }
 }

@@ -28,7 +28,7 @@ namespace SideMenu.ViewModels
 
         private void AppModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void AddNewApp(DragEventArgs e)

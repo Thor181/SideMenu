@@ -4,15 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SideMenu.Views"
-             mc:Ignorable="d"  
-             Height="50" Width="70"
-             Style="{StaticResource AppCard}" Cursor="Hand">
-    <Grid>
+             mc:Ignorable="d" x:Name="MainUserContol"
+             Height="50" Width="70" Margin="0 2 0 0"
+             Style="{StaticResource AppCard}" Cursor="Hand" >
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Удалить" ></MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Image Source="{Binding AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
-        <TextBlock Text="{Binding AppName}" d:Text="AppName" Grid.Row="1" Foreground="Black" FontSize="10" LineHeight="9" LineStackingStrategy="BlockLineHeight" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Bottom"  ></TextBlock>
+        <TextBlock Text="{Binding AppName}" x:Name="AppNameTextblock" 
+                   Grid.Row="1"  Foreground="Black" 
+                   FontSize="10" 
+                   LineHeight="10" LineStackingStrategy="BlockLineHeight" 
+                   TextWrapping="Wrap" TextAlignment="Center" TextTrimming="WordEllipsis" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"  ></TextBlock>
+        <Popup IsOpen="{Binding ElementName=MainUserContol, Path=IsMouseOver, Mode=OneWay}"
+               Placement="Bottom" AllowsTransparency="True" PopupAnimation="Fade" Focusable="False">
+            <Border CornerRadius="3" Background="White" BorderThickness="1" BorderBrush="#d1d1d1" Padding="1">
+                <TextBlock Text="{Binding ElementName=AppNameTextblock, Path=Text}"></TextBlock>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>

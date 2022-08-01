@@ -30,7 +30,6 @@ namespace SideMenu
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)
         {
             MainWindowViewModel.AddNewApp(e);
-
         }
     }
 }

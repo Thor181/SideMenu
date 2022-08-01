@@ -64,10 +64,17 @@
             </EventTrigger>
         </Grid.Triggers>
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
-            <ScrollViewer Width="125" HorizontalAlignment="Left" >
-                
-                <StackPanel x:Name="AppsStackPanel"  Margin="10 0" >
-                </StackPanel>
+            <ScrollViewer Width="125" HorizontalAlignment="Left" VerticalScrollBarVisibility="Disabled">
+                <ListView x:Name="AppsStackPanel" ItemsSource="{Binding AppModels}" BorderThickness="0" Margin="10 0" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <views:AppCard></views:AppCard>
+                        </DataTemplate>
+                        
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--<StackPanel  x:Name="AppsStackPanel"  Margin="10 0" >
+                </StackPanel>-->
             </ScrollViewer>
         </Border>
     </Grid>

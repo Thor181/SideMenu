@@ -12,11 +12,11 @@ namespace SideMenu.ViewModels
 {
     public class MainWindowViewModel
     {
-        private ObservableCollection<AppModel> _appModels;
+        private ObservableCollection<AppModel> _appModels = new ObservableCollection<AppModel>();
 
         public ObservableCollection<AppModel> AppModels
         {
-            get; set;
+            get { return _appModels; } set { _appModels = value; }
         }
 
 

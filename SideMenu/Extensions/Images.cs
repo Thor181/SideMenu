@@ -14,7 +14,8 @@ namespace SideMenu.Extensions
     {
         public static BitmapImage GetIcon(this string filePath)
         {
-            Icon icon = Icon.ExtractAssociatedIcon(filePath.GetFilePathFromShortcut());
+            Icon icon = filePath.Contains(".lnk", StringComparison.OrdinalIgnoreCase) ? Icon.ExtractAssociatedIcon(filePath.GetFilePathFromShortcut()) 
+                                                                                      : Icon.ExtractAssociatedIcon(filePath);
             var bitmap = icon.ToBitmap();
 
             using (var memory = new MemoryStream())

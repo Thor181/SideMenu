@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using SideMenu.Extensions;
 
-namespace SideMenu.Models
+namespace SideMenu.Views
 {
     public partial class AppCard : UserControl
     {
@@ -18,10 +18,7 @@ namespace SideMenu.Models
         }
         public AppCard(string filePath) : this()
         {
-            string appName = filePath.GetAppName();
-            BitmapImage appImage = filePath.GetIcon();
-            AppModel appModel = new AppModel(filePath, appName, appImage);
-            DataContext = new ViewModels.AppModelViewModel(appModel);
+            
         }
         
     }

@@ -8,16 +8,17 @@ using System.Windows.Media.Imaging;
 
 namespace SideMenu.ViewModels
 {
-    public class AppModelViewModel
+    public class AppCardViewModel
     {
         public string AppName { get; set; }
         public BitmapImage AppImage { get; set; }
 
-        public AppModelViewModel(Models.AppModel appModel)
+        public AppCardViewModel(Models.AppModel appModel)
         {
             AppName = appModel.AppName;
             AppImage = appModel.AppImage;
         }
+
 
     }
 }

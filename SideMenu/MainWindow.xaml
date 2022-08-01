@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SideMenu" xmlns:models="clr-namespace:SideMenu.Models"
+        xmlns:local="clr-namespace:SideMenu" xmlns:views="clr-namespace:SideMenu.Views"
         mc:Ignorable="d" x:Name="MainWindowX" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" 
         Left="1919" Top="320" ShowInTaskbar="False" AllowsTransparency="True" AllowDrop="True" Drop="AppsStackPanel_Drop"
         Title="MainWindow" Height="450" Width="150" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
-    
+
     <Grid x:Name="MainGrid" Background="Transparent" >
         <Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
@@ -65,12 +65,9 @@
         </Grid.Triggers>
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer Width="125" HorizontalAlignment="Left" >
-                    <StackPanel x:Name="AppsStackPanel"  Margin="10 0" >
-                        <!--<models:AppCard Height="50" Width="50" Margin="0 5" Background="Red"></models:AppCard>
-                        <models:AppCard Height="50" Width="50" Margin="0 5" Background="Red"></models:AppCard>
-                        <models:AppCard Height="50" Width="50" Margin="0 5" Background="Red"></models:AppCard>-->
-                       
-                    </StackPanel>
+                
+                <StackPanel x:Name="AppsStackPanel"  Margin="10 0" >
+                </StackPanel>
             </ScrollViewer>
         </Border>
     </Grid>

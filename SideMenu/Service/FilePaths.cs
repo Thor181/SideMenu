@@ -31,14 +31,14 @@ namespace SideMenu.Service
                 {
                     Directory.CreateDirectory(_configDirectory);
                 }
-                return _logDirectory;
+                return _configDirectory;
             }
         }
         public static string ConfigFile
         {
             get
             {
-                string filePath = $"{_configDirectory}\\config.json";
+                string filePath = $"{ConfigDirectory}\\config.json";
                 if (!File.Exists(filePath))
                 {
                     File.Create(filePath).Dispose();

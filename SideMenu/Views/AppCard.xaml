@@ -8,27 +8,31 @@
              Height="50" Width="70" Margin="0 2 0 0"
              Style="{StaticResource AppCard}" Cursor="Hand" >
     <UserControl.ContextMenu>
-        <ContextMenu>
+        <ContextMenu x:Name="AppCardContextMenu">
             <MenuItem Header="Удалить" ></MenuItem>
         </ContextMenu>
     </UserControl.ContextMenu>
-    <Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="4*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-        <Image Source="{Binding AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
-        <TextBlock Text="{Binding AppName}" x:Name="AppNameTextblock" 
+    <Button Style="{StaticResource EmptyButton}" Command="{Binding ClickCommand}" 
+            Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+        
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Image Source="{Binding AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
+            <TextBlock Text="{Binding AppName}" x:Name="AppNameTextblock" 
                    Grid.Row="1"  Foreground="Black" 
                    FontSize="10" 
                    LineHeight="10" LineStackingStrategy="BlockLineHeight" 
                    TextWrapping="Wrap" TextAlignment="Center" TextTrimming="WordEllipsis" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"  ></TextBlock>
-        <Popup IsOpen="{Binding ElementName=MainUserContol, Path=IsMouseOver, Mode=OneWay}"
+            <Popup IsOpen="{Binding ElementName=MainUserContol, Path=IsMouseOver, Mode=OneWay}"
                Placement="Bottom" AllowsTransparency="True" PopupAnimation="Fade" Focusable="False">
-            <Border CornerRadius="3" Background="White" BorderThickness="1" BorderBrush="#d1d1d1" Padding="1">
-                <TextBlock Text="{Binding ElementName=AppNameTextblock, Path=Text}"></TextBlock>
-            </Border>
-        </Popup>
-    </Grid>
+                <Border CornerRadius="3" Background="White" BorderThickness="1" BorderBrush="#d1d1d1" Padding="1">
+                    <TextBlock Text="{Binding ElementName=AppNameTextblock, Path=Text}"></TextBlock>
+                </Border>
+            </Popup>
+        </Grid>
+    </Button>
 </UserControl>

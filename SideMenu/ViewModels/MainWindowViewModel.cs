@@ -1,35 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using SideMenu.Models;
-using SideMenu.Extensions.Serialization;
+using SideMenu.Extensions;
+using System.Windows.Threading;
 
 namespace SideMenu.ViewModels
 {
     public class MainWindowViewModel
     {
         public ObservableCollection<AppModel> AppModels { get; set; } = new ObservableCollection<AppModel>();
-        List<AppModel> listAppModels = new List<AppModel>();
-        public MainWindowViewModel()
+
+        public MainWindowViewModel(Dispatcher dispatcher)
         {
+            _ = AppModels.DeserializeConfigAsync(dispatcher);
             AppModels.CollectionChanged += AppModels_CollectionChanged;
         }
 
         private void AppModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            AppModels.SerializeAsync();
+            _ = AppModels.SerializeConfigAsync();
         }
 
         public void AddNewApp(DragEventArgs e)
         {
             try
             {
-                string filePath = ((string[])e.Data.GetData(DataFormats.FileDrop, false))[0];
-                AppModels.Add(new AppModel(filePath));
+                string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+                foreach (var path in filePaths)
+                {
+                    AppModels.Add(new AppModel(path));
+                }
             }
             catch (Exception ex)
             {

@@ -13,7 +13,7 @@ namespace SideMenu
             {
                 if (_mainWindowViewModel == null)
                 {
-                    _mainWindowViewModel = new MainWindowViewModel();
+                    _mainWindowViewModel = new MainWindowViewModel(Dispatcher);
                 }
                 return _mainWindowViewModel;
             }

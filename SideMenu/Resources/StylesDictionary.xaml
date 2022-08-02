@@ -88,5 +88,15 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+    <Style x:Key="EmptyButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <ContentPresenter ></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

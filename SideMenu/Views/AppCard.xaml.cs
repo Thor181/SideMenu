@@ -11,15 +11,9 @@ namespace SideMenu.Views
 {
     public partial class AppCard : UserControl
     {
-
         public AppCard()
         {
             InitializeComponent();
         }
-        public AppCard(string filePath) : this()
-        {
-            
-        }
-        
     }
 }

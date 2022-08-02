@@ -9,8 +9,8 @@ namespace SideMenu.Service
 {
     public static class FilePaths
     {
-        private const string _logDirectory = "%LOCALAPPDATA%\\SideMenu\\Logs";
-        private const string _configDirectory = "%LOCALAPPDATA%\\SideMenu\\Config";
+        private static readonly string _logDirectory = $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\SideMenu\\Logs";
+        private static readonly string _configDirectory = $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\SideMenu\\Config";
 
         public static string LogDirectory
         {
@@ -32,6 +32,18 @@ namespace SideMenu.Service
                     Directory.CreateDirectory(_configDirectory);
                 }
                 return _logDirectory;
+            }
+        }
+        public static string ConfigFile
+        {
+            get
+            {
+                string filePath = $"{_configDirectory}\\config.json";
+                if (!File.Exists(filePath))
+                {
+                    File.Create(filePath).Dispose();
+                }
+                return filePath;
             }
         }
     }

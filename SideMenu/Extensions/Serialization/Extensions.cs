@@ -13,25 +13,23 @@ namespace SideMenu.Extensions.Serialization
 {
     public static class Extensions
     {
-        private static readonly string _configFilePath = $"{FilePaths.ConfigDirectory}\\config.json";
-        public static async void SerializeAsync(this ObservableCollection<AppModel> collection)
+        public static async Task SerializeAsync(this ObservableCollection<AppModel> collection)
         {
-            using (StreamWriter sw = new StreamWriter(_configFilePath, false))
+
+            using (StreamWriter sw = new StreamWriter(FilePaths.ConfigFile, false))
             {
                 List<string> filePaths = new List<string>(collection.Select(x => x.FilePath));
                 string jsonString = JsonSerializer.Serialize(filePaths, typeof(List<string>));
-                
-
+                await sw.WriteAsync(jsonString);
             }
-
-
-            await Task.Run(() =>
+            var JUST_BREAKPOINT = string.Empty;
+        }
+        public static async Task<ObservableCollection<AppModel>> DeserializeAsync(this ObservableCollection<AppModel> collection)
+        {
+            using (StreamReader sr = new StreamReader(FilePaths.ConfigFile, false))
             {
 
-            });
-
-
-            var JUST_BREAKPOINT = string.Empty;
+            }
         }
     }
 }

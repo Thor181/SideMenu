@@ -21,7 +21,7 @@ namespace SideMenu.ViewModels
 
         private void AppModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            AppModels.Serialize();
+            AppModels.SerializeAsync();
         }
 
         public void AddNewApp(DragEventArgs e)

@@ -9,16 +9,26 @@ namespace SideMenu.Service
 {
     public class Command : ICommand
     {
+        protected Action<object> _action;
+        
+        protected object _parameter;
+
+        public Command(object parameter)
+        {
+            _parameter = parameter;
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _action.Invoke(_parameter);
         }
+
     }
 }

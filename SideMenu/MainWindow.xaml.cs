@@ -15,7 +15,7 @@ namespace SideMenu
                 {
                     _mainWindowViewModel = new MainWindowViewModel(Dispatcher);
                 }
-                return _mainWindowViewModel;
+                return _mainWindowViewModel;  
             }
             set { _mainWindowViewModel = value; }
         }

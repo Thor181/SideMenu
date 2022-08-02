@@ -4,22 +4,23 @@ using System.Windows;
 using SideMenu.Models;
 using SideMenu.Extensions;
 using System.Windows.Threading;
+using SideMenu.Views;
 
 namespace SideMenu.ViewModels
 {
     public class MainWindowViewModel
     {
-        public ObservableCollection<AppModel> AppModels { get; set; } = new ObservableCollection<AppModel>();
+        public ObservableCollection<AppCard> AppCards { get; set; } = new ObservableCollection<AppCard>();
 
         public MainWindowViewModel(Dispatcher dispatcher)
         {
-            _ = AppModels.DeserializeConfigAsync(dispatcher);
-            AppModels.CollectionChanged += AppModels_CollectionChanged;
+            _ = AppCards.DeserializeConfigAsync(dispatcher);
+            AppCards.CollectionChanged += AppModels_CollectionChanged;
         }
 
         private void AppModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            _ = AppModels.SerializeConfigAsync();
+            _ = AppCards.SerializeConfigAsync();
         }
 
         public void AddNewApp(DragEventArgs e)
@@ -29,7 +30,7 @@ namespace SideMenu.ViewModels
                 string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
                 foreach (var path in filePaths)
                 {
-                    AppModels.Add(new AppModel(path));
+                    AppCards.Add(new AppCard(path));
                 }
             }
             catch (Exception ex)

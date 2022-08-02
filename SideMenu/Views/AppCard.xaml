@@ -12,16 +12,14 @@
             <MenuItem Header="Удалить" ></MenuItem>
         </ContextMenu>
     </UserControl.ContextMenu>
-    <Button Style="{StaticResource EmptyButton}" Command="{Binding ClickCommand}" 
-            Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
-        
+    <Button Style="{StaticResource EmptyButton}" Command="{Binding ClickCommand}">
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
-            <TextBlock Text="{Binding AppName}" x:Name="AppNameTextblock" 
+            <Image Source="{Binding AppModel.AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
+            <TextBlock Text="{Binding AppModel.AppName}" x:Name="AppNameTextblock" 
                    Grid.Row="1"  Foreground="Black" 
                    FontSize="10" 
                    LineHeight="10" LineStackingStrategy="BlockLineHeight" 

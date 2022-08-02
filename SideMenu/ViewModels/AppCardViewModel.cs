@@ -5,12 +5,11 @@ namespace SideMenu.ViewModels
 {
     public class AppCardViewModel
     {
-        public string AppName { get; set; }
-        public BitmapImage AppImage { get; set; }
+        public AppModel AppModel { get; set; }
 
         public RunAppCommand ClickCommand { get; set; }
 
-        public AppCardViewModel(Models.AppModel appModel)
+        public AppCardViewModel(AppModel appModel)
         {
             AppModel = appModel;
             ClickCommand = new RunAppCommand(AppModel.FilePath);

@@ -17,8 +17,6 @@ namespace SideMenu.Views
         public AppCard()
         {
             InitializeComponent();
-            AppCardViewModel = new AppCardViewModel(new AppModel(appFilePath));
-            DataContext = AppCardViewModel;
         }
         public AppCard(string appFilePath) : this()
         {

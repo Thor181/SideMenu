@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using SideMenu.Models;
+﻿using SideMenu.Models;
 using SideMenu.Service;
 
 namespace SideMenu.ViewModels
@@ -14,11 +7,12 @@ namespace SideMenu.ViewModels
     {
         public AppModel AppModel { get; set; }
 
-        //public Command ClickCommand { get; set; } = new Command();
+        public RunAppCommand ClickCommand { get; set; }
 
         public AppCardViewModel(AppModel appModel)
         {
             AppModel = appModel;
+            ClickCommand = new RunAppCommand(AppModel.FilePath);
         }
     }
 }

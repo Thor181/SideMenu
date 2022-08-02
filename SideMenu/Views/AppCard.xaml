@@ -20,8 +20,8 @@
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding AppModel.AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
-            <TextBlock Text="{Binding AppModel.AppName}" x:Name="AppNameTextblock" 
+            <Image Source="{Binding AppImage}" SnapsToDevicePixels="True" Grid.Row="0"></Image>
+            <TextBlock Text="{Binding AppName}" x:Name="AppNameTextblock" 
                    Grid.Row="1"  Foreground="Black" 
                    FontSize="10" 
                    LineHeight="10" LineStackingStrategy="BlockLineHeight" 

@@ -1,7 +1,5 @@
 ﻿using SideMenu.Models;
 using SideMenu.Service;
-using SideMenu.ViewModels;
-using SideMenu.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,16 +14,16 @@ namespace SideMenu.Extensions
 {
     public static class Serializer
     {
-        public static async Task SerializeConfigAsync(this ObservableCollection<AppCard> collection)
+        public static async Task SerializeConfigAsync(this ObservableCollection<AppModel> collection)
         {
             using (StreamWriter sw = new StreamWriter(FilePaths.ConfigFile, false))
             {
-                List<string> filePaths = new List<string>(collection.Select(x => x.AppCardViewModel.AppModel.FilePath));
+                List<string> filePaths = new List<string>(collection.Select(x => x.FilePath));
                 string jsonString = JsonSerializer.Serialize(filePaths, typeof(List<string>));
                 await sw.WriteAsync(jsonString);
             }
         }
-        public static async Task DeserializeConfigAsync(this ObservableCollection<AppCard> appCardCollection, Dispatcher dispatcher)
+        public static async Task DeserializeConfigAsync(this ObservableCollection<AppModel> appModelCollection, Dispatcher dispatcher)
         {
             if (new FileInfo(FilePaths.ConfigFile).Length == 0) return;
             
@@ -36,9 +34,9 @@ namespace SideMenu.Extensions
                 {
                     appPaths = (List<string>)JsonSerializer.Deserialize(sr.ReadToEnd(), typeof(List<string>));
                 }
-                foreach (var path in appPaths)
+                foreach (var item in appPaths)
                 {
-                    appCardCollection.Add(new AppCard(path));
+                    appModelCollection.Add(new AppModel(item));
                 }
             });
         }

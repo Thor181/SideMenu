@@ -5,21 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using SideMenu.Models;
 using SideMenu.Service;
 
 namespace SideMenu.ViewModels
 {
     public class AppCardViewModel
     {
-        public string AppName { get; set; }
-        public BitmapImage AppImage { get; set; }
+        public AppModel AppModel { get; set; }
 
-        public Command ClickCommand { get; set; } = new Command();
+        //public Command ClickCommand { get; set; } = new Command();
 
-        public AppCardViewModel(Models.AppModel appModel)
+        public AppCardViewModel(AppModel appModel)
         {
-            AppName = appModel.AppName;
-            AppImage = appModel.AppImage;
+            AppModel = appModel;
         }
     }
 }

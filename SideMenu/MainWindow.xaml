@@ -65,12 +65,8 @@
         </Grid.Triggers>
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" Margin="0 0 45 0">
-                <ItemsControl ItemsSource="{Binding AppModels}" BorderThickness="0"  >
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate >
-                            <views:AppCard/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0"  >
+                    
                 </ItemsControl>
             </ScrollViewer>
         </Border>

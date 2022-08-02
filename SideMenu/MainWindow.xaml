@@ -8,7 +8,7 @@
         Left="1919" Top="320" ShowInTaskbar="False" AllowsTransparency="True" AllowDrop="True" Drop="AppsStackPanel_Drop"
         Title="MainWindow" Height="450" Width="150" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
 
-    <Grid x:Name="MainGrid" Background="Transparent" >
+    <Grid x:Name="MainGrid" Background="Transparent">
         <Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
@@ -17,7 +17,7 @@
                                          BeginTime="0:0:0" Duration="0:0:0.2"
                                          To="1819">
                             <DoubleAnimation.EasingFunction >
-                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"></BackEase>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
                     </Storyboard>

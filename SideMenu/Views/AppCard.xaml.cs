@@ -1,18 +1,10 @@
-﻿using IWshRuntimeLibrary;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
+﻿using System.Drawing;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using SideMenu.Extensions;
 using SideMenu.ViewModels;
 using SideMenu.Models;
 using System.Windows.Controls.Primitives;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
-using System.Collections.Generic;
-using System.Collections;
 
 namespace SideMenu.Views
 {
@@ -22,7 +14,6 @@ namespace SideMenu.Views
         private static string _appFilePath;
 
         private static Popup _popupInstance;
-        private bool _popupAreDragging = false;
         public static Popup PopupDrag
         {
             get
@@ -39,6 +30,7 @@ namespace SideMenu.Views
                     };
                 }
                 return _popupInstance;
+                
             }
             set { _popupInstance = value; }
         }
@@ -61,13 +53,11 @@ namespace SideMenu.Views
             base.OnPreviewMouseMove(e);
             if (e.LeftButton == MouseButtonState.Pressed && ((AppCard)e.Source).Parent != PopupDrag)
             {
-                _popupAreDragging = true;
                 PopupDrag.SetPopupOffset();
                 if (!MainGrid.Children.Contains(PopupDrag))
                 {
                     MainGrid.Children.Add(PopupDrag);
                 }
-                
             }
         }
     }

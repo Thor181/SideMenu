@@ -17,7 +17,7 @@
                                          BeginTime="0:0:0" Duration="0:0:0.2"
                                          To="1819">
                             <DoubleAnimation.EasingFunction >
-                                <BackEase EasingMode="EaseOut" Amplitude="0.9"></BackEase>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
                     </Storyboard>
@@ -30,12 +30,13 @@
                                          BeginTime="0:0:0" Duration="0:0:0.2"
                                          To="1819">
                             <DoubleAnimation.EasingFunction >
-                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
+            
             <EventTrigger RoutedEvent="MouseLeave">
                 <BeginStoryboard>
                     <Storyboard x:Name="HideAnim">
@@ -43,7 +44,7 @@
                                          BeginTime="0:0:0" Duration="0:0:0.2"
                                          To="1919">
                             <DoubleAnimation.EasingFunction >
-                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
                     </Storyboard>
@@ -56,7 +57,7 @@
                                          BeginTime="0:0:0" Duration="0:0:0.2"
                                          To="1919">
                             <DoubleAnimation.EasingFunction >
-                                <BackEase EasingMode="EaseOut" Amplitude="0.9"  ></BackEase>
+                                <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
                     </Storyboard>
@@ -65,8 +66,8 @@
         </Grid.Triggers>
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden" Margin="0 0 45 0" >
-                <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0" Padding="0 10"> 
-                   
+                <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0" Padding="0 20">
+                    
                 </ItemsControl>
             </ScrollViewer>
         </Border>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SideMenu.Service
 {
@@ -11,9 +12,11 @@ namespace SideMenu.Service
     {
         public static void WriteException(Exception ex)
         {
+            
             string exceptionString = $"[{DateTime.Now}] Exception: [{ex}]";
             string logFileName = GetLogFileName();
             File.WriteAllText(logFileName, exceptionString);
+            MessageBox.Show($"Произошла непредвиденная ошибка. См. лог файл: {logFileName}");
         }
         private static string GetLogFileName()
         {

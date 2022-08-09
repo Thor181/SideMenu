@@ -11,36 +11,13 @@ namespace SideMenu.Views
     public partial class AppCard : UserControl
     {
         public AppCardViewModel AppCardViewModel { get; set; }
-        private static string _appFilePath;
-
-        private static Popup _popupInstance;
-        public static Popup PopupDrag
-        {
-            get
-            {
-                if (_popupInstance == null)
-                {
-                    _popupInstance = new Popup()
-                    {
-                        Child = new AppCard(_appFilePath) { Opacity = 0.4 },
-                        AllowsTransparency = true,
-                        StaysOpen = true,
-                        IsOpen = true,
-                        Placement = PlacementMode.AbsolutePoint
-                    };
-                }
-                return _popupInstance;
-                
-            }
-            set { _popupInstance = value; }
-        }
-
-
+        private string _appFilePath;
 
         public AppCard()
         {
             InitializeComponent();
         }
+
         public AppCard(string appFilePath) : this()
         {
             AppCardViewModel = new AppCardViewModel(new AppModel(appFilePath));
@@ -51,29 +28,15 @@ namespace SideMenu.Views
         protected override void OnPreviewMouseMove(MouseEventArgs e)
         {
             base.OnPreviewMouseMove(e);
-            if (e.LeftButton == MouseButtonState.Pressed && ((AppCard)e.Source).Parent != PopupDrag)
-            {
-                PopupDrag.SetPopupOffset();
-                if (!MainGrid.Children.Contains(PopupDrag))
-                {
-                    MainGrid.Children.Add(PopupDrag);
-                }
-            }
+            AppCardViewModel.PopupViewDrag(e, MainGrid, _appFilePath);
         }
-    }
 
-    public static class Extensions
-    {
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool GetCursorPos(out Point point);
-
-        public static void SetPopupOffset(this Popup popup)
+        protected override void OnPreviewMouseLeftButtonUp(MouseButtonEventArgs e)
         {
-            GetCursorPos(out System.Drawing.Point mousePointOfScreen);
-            popup.HorizontalOffset = mousePointOfScreen.X;
-            popup.VerticalOffset = mousePointOfScreen.Y;
+            base.OnPreviewMouseLeftButtonUp(e);
+            AppCardViewModel.RemovePopupViewDrag(MainGrid);
         }
-
     }
+
+    
 }

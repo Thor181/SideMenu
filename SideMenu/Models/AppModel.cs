@@ -9,7 +9,7 @@ namespace SideMenu.Models
         public string FilePath { get; set; }
         public string AppName { get; set; }
         public BitmapImage AppImage { get; set; }
-        //public Command ClickCommand { get; set; } = new Command();
+
         public AppModel(string filePath)
         {
             FilePath = filePath;

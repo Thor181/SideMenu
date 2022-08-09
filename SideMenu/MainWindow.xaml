@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SideMenu" xmlns:views="clr-namespace:SideMenu.Views"
-        mc:Ignorable="d" x:Name="MainWindowX" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" 
-        Left="1919" Top="320" ShowInTaskbar="False" AllowsTransparency="True" AllowDrop="True" Drop="AppsStackPanel_Drop"
-        Title="MainWindow" Height="450" Width="150" WindowStyle="None" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+        mc:Ignorable="d" x:Name="MainWindowX" 
+        Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" ShowInTaskbar="False" 
+        Left="1919" Top="320" Height="450" Width="150"
+        AllowsTransparency="True" WindowStyle="None" Background="Transparent"
+        AllowDrop="True" Drop="AppsStackPanel_Drop" 
+        Title="MainWindow"
+        BorderThickness="0" BorderBrush="Transparent">
 
     <Grid x:Name="MainGrid" Background="Transparent">
         <Grid.Triggers>

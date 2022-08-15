@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:SideMenu" xmlns:views="clr-namespace:SideMenu.Views"
         mc:Ignorable="d" x:Name="MainWindowX" 
         Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" ShowInTaskbar="False" 
-        Left="1919" Top="320" Height="450" Width="150"
+        Left="1919" Top="320" Height="450" Width="150" Opacity="0.01"
         AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         AllowDrop="True" Drop="AppsStackPanel_Drop" 
         Title="MainWindow"
         BorderThickness="0" BorderBrush="Transparent">
 
-    <Grid x:Name="MainGrid" Background="Transparent">
+    <Grid x:Name="MainGrid" Background="Transparent" >
         <Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
@@ -23,6 +23,10 @@
                             <DoubleAnimation.EasingFunction >
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         To="1">
                         </DoubleAnimation>
                     </Storyboard>
                 </BeginStoryboard>
@@ -37,10 +41,13 @@
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         To="1">
+                        </DoubleAnimation>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-            
             <EventTrigger RoutedEvent="MouseLeave">
                 <BeginStoryboard>
                     <Storyboard x:Name="HideAnim">
@@ -50,6 +57,10 @@
                             <DoubleAnimation.EasingFunction >
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         To="0.01" >
                         </DoubleAnimation>
                     </Storyboard>
                 </BeginStoryboard>
@@ -64,15 +75,17 @@
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0" Duration="0:0:0.2"
+                                         To="0.01" >
+                        </DoubleAnimation>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
         </Grid.Triggers>
         <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden" Margin="0 0 45 0" >
-                <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0" Padding="0 20">
-                    
-                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0" Padding="0 20"/>
             </ScrollViewer>
         </Border>
     </Grid>

@@ -41,5 +41,13 @@ namespace SideMenu.ViewModels
 #endif
             }
         }
+
+        public Point GetStartupLocation()
+        {
+
+
+            var JUST_BREAKPOINT = string.Empty;
+            return new Point();
+        }
     }
 }

@@ -23,13 +23,18 @@ namespace SideMenu
         public MainWindow()
         {
             InitializeComponent();
-
+            InitializeStartupLocation();
             MainWindowX.DataContext = MainWindowViewModel;
         }
 
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)
         {
             MainWindowViewModel.AddNewApp(e);
+        }
+
+        private void InitializeStartupLocation()
+        {
+            Point pointLocation = MainWindowViewModel.GetStartupLocation();
         }
     }
 }

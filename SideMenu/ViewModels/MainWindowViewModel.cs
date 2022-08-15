@@ -44,8 +44,6 @@ namespace SideMenu.ViewModels
 
         public Point GetStartupLocation()
         {
-
-
             var JUST_BREAKPOINT = string.Empty;
             return new Point();
         }

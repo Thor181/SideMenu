@@ -12,6 +12,9 @@ namespace SideMenu.Service
     {
         public Point Location { get; set; }
 
+        public int X { get; set; }
+        public int Y { get; set; }
+
         public int AnimationPositionShow { get; set; }
         public int AnimationPositionHide { get; set; }
 
@@ -25,10 +28,13 @@ namespace SideMenu.Service
             var totalWidth = Screen.AllScreens.Select(x => x.Bounds).GetSumWidth();
             var height = Screen.AllScreens.Last().Bounds.Height;
 
-            Location = new Point(totalWidth - 2, height);
+            Location = new Point(totalWidth - 2, height/2);
 
             AnimationPositionShow = (int)Location.X - 100;
             AnimationPositionHide = (int)Location.X;
+
+            X = (int)Location.X;
+            Y = (int)Location.Y;
 
             return Location;
         }

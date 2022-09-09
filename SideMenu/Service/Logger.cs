@@ -12,7 +12,6 @@ namespace SideMenu.Service
     {
         public static void WriteException(Exception ex)
         {
-            
             string exceptionString = $"[{DateTime.Now}] Exception: [{ex}]";
             string logFileName = GetLogFileName();
             File.WriteAllText(logFileName, exceptionString);
@@ -20,7 +19,7 @@ namespace SideMenu.Service
         }
         private static string GetLogFileName()
         {
-            return $"{FilePaths.LogDirectory}log{DateTime.Now.ToString().ReplaceCharsToNull(":",".")}.txt";
+            return $"{FilePaths.LogDirectory}\\log{DateTime.Now.ToString().ReplaceCharsToNull(":",".")}.txt";
         }
     }
     public static class Extensions

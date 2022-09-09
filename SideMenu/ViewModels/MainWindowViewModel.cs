@@ -12,6 +12,13 @@ namespace SideMenu.ViewModels
     {
         public ObservableCollection<AppCard> AppCards { get; set; } = new ObservableCollection<AppCard>();
 
+        private Service.StartupLocation _startupLocation;
+
+        public Service.StartupLocation StartupLocation
+        {
+            get => _startupLocation ??= new Service.StartupLocation();
+        }
+
         public MainWindowViewModel(Dispatcher dispatcher)
         {
             _ = AppCards.DeserializeConfigAsync(dispatcher);
@@ -42,10 +49,5 @@ namespace SideMenu.ViewModels
             }
         }
 
-        public Point GetStartupLocation()
-        {
-            var JUST_BREAKPOINT = string.Empty;
-            return new Point();
-        }
     }
 }

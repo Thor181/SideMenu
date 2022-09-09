@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SideMenu" xmlns:views="clr-namespace:SideMenu.Views"
         mc:Ignorable="d" x:Name="MainWindowX" 
         Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" ShowInTaskbar="False" 
-        Left="1919" Top="320" Height="450" Width="150" Opacity="0.01"
+        Height="450" Width="150" Opacity="0.01"
+        Left="{Binding StartupLocation.Location.X}" Top="{Binding StartupLocation.Location.Y}"
         AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         AllowDrop="True" Drop="AppsStackPanel_Drop" 
         Title="MainWindow"
@@ -19,7 +20,7 @@
                     <Storyboard x:Name="ShowAnim">
                         <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
                                          BeginTime="0:0:0" Duration="0:0:0.2"
-                                         To="1819">
+                                         To="{Binding StartupLocation.AnimationPositionShow}">
                             <DoubleAnimation.EasingFunction >
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
@@ -36,7 +37,7 @@
                     <Storyboard x:Name="ShowDragAnim">
                         <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
                                          BeginTime="0:0:0" Duration="0:0:0.2"
-                                         To="1819">
+                                         To="{Binding StartupLocation.AnimationPositionShow}">
                             <DoubleAnimation.EasingFunction >
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
@@ -53,7 +54,7 @@
                     <Storyboard x:Name="HideAnim">
                         <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
                                          BeginTime="0:0:0" Duration="0:0:0.2"
-                                         To="1919">
+                                         To="{Binding StartupLocation.AnimationPositionHide}">
                             <DoubleAnimation.EasingFunction >
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>
@@ -70,7 +71,7 @@
                     <Storyboard x:Name="HideDragAnim">
                         <DoubleAnimation Storyboard.TargetName="MainWindowX" Storyboard.TargetProperty="Left"
                                          BeginTime="0:0:0" Duration="0:0:0.2"
-                                         To="1919">
+                                         To="{Binding StartupLocation.AnimationPositionHide}">
                             <DoubleAnimation.EasingFunction >
                                 <BackEase EasingMode="EaseOut" Amplitude="0.9"/>
                             </DoubleAnimation.EasingFunction>

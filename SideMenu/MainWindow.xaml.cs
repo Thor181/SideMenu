@@ -11,11 +11,8 @@ namespace SideMenu
         {
             get
             {
-                if (_mainWindowViewModel == null)
-                {
-                    _mainWindowViewModel = new MainWindowViewModel(Dispatcher);
-                }
-                return _mainWindowViewModel;  
+                _mainWindowViewModel ??= new MainWindowViewModel(Dispatcher);
+                return _mainWindowViewModel;
             }
             set { _mainWindowViewModel = value; }
         }
@@ -23,18 +20,14 @@ namespace SideMenu
         public MainWindow()
         {
             InitializeComponent();
-            InitializeStartupLocation();
             MainWindowX.DataContext = MainWindowViewModel;
+
+
         }
 
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)
         {
             MainWindowViewModel.AddNewApp(e);
-        }
-
-        private void InitializeStartupLocation()
-        {
-            Point pointLocation = MainWindowViewModel.GetStartupLocation();
         }
     }
 }

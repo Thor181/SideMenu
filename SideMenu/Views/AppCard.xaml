@@ -15,7 +15,7 @@
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding AppModel.AppImage}" SnapsToDevicePixels="True" Grid.Row="0"/>
+            <Image d:Source="pack://application:,,,/Resources/folder.png" Source="{Binding AppModel.AppImage}" SnapsToDevicePixels="True" Grid.Row="0"/>
             <TextBlock Text="{Binding AppModel.AppName}" x:Name="AppNameTextblock" 
                    Grid.Row="1"  Foreground="Black" 
                    FontSize="10" 

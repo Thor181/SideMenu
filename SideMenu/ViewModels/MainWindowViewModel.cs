@@ -58,6 +58,7 @@ namespace SideMenu.ViewModels
             try
             {
                 string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+
                 foreach (var path in filePaths)
                 {
                     AppCards.Add(new AppCard(path));

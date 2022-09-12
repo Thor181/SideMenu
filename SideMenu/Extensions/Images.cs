@@ -33,6 +33,5 @@ namespace SideMenu.Extensions
                 return bitmapImage;
             }
         }
-        
     }
 }

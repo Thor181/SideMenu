@@ -39,10 +39,10 @@ namespace SideMenu.Extensions
             configWrapper.SetAppCards(appCards ?? appCardsDes);
             configWrapper.StartupLocation = startupLocation ?? startupLocationDes;
 
-            using (Stream sw = new FileStream(FilePaths.ConfigFile, FileMode.Open))
+            using (StreamWriter sw = new StreamWriter(FilePaths.ConfigFile))
             {
-                JsonSerializerOptions jsonOptions = new JsonSerializerOptions() {  };
-                await JsonSerializer.SerializeAsync(sw, configWrapper, typeof(ConfigWrapper), jsonOptions);
+                string jsonString = JsonSerializer.Serialize(configWrapper, typeof(ConfigWrapper));
+                sw.WriteLine(jsonString);
             }
         }
 
@@ -51,17 +51,14 @@ namespace SideMenu.Extensions
             if (new FileInfo(FilePaths.ConfigFile).Length == 0)
                 return;
 
-            await dispatcher.BeginInvoke(() =>
+            using (Stream sr = new FileStream(FilePaths.ConfigFile, FileMode.Open))
             {
-                using (Stream sr = new FileStream(FilePaths.ConfigFile, FileMode.Open))
+                ConfigWrapper configWrapper = (ConfigWrapper)JsonSerializer.DeserializeAsync(sr, typeof(ConfigWrapper)).Result;
+                foreach (var item in configWrapper.GetAppCards())
                 {
-                    ConfigWrapper configWrapper = (ConfigWrapper)JsonSerializer.DeserializeAsync(sr, typeof(ConfigWrapper)).Result;
-                    foreach (var item in configWrapper.GetAppCards())
-                    {
-                        appCardCollection.Add(item);
-                    }
+                    appCardCollection.Add(item);
                 }
-            });
+            }
         }
 
         public static async Task DeserializeConfigAsync(this StartupLocation startupLocation, Dispatcher dispatcher)
@@ -69,14 +66,15 @@ namespace SideMenu.Extensions
             if (new FileInfo(FilePaths.ConfigFile).Length == 0)
                 return;
 
-            await dispatcher.BeginInvoke(() =>
+            using (Stream sr = new FileStream(FilePaths.ConfigFile, FileMode.Open))
             {
-                using (Stream sr = new FileStream(FilePaths.ConfigFile, FileMode.Open))
-                {
-                    ConfigWrapper configWrapper = (ConfigWrapper)JsonSerializer.DeserializeAsync(sr, typeof(ConfigWrapper)).Result;
-                    startupLocation = configWrapper.StartupLocation;
-                }
-            });
+                ConfigWrapper configWrapper = (ConfigWrapper)JsonSerializer.DeserializeAsync(sr, typeof(ConfigWrapper)).Result;
+                startupLocation.X = configWrapper.StartupLocation.X;
+                startupLocation.Y = configWrapper.StartupLocation.Y;
+                startupLocation.AnimationPositionShow = configWrapper.StartupLocation.AnimationPositionShow;
+                startupLocation.AnimationPositionHide = configWrapper.StartupLocation.AnimationPositionHide;
+                //startupLocation = configWrapper.StartupLocation;
+            }
         }
 
         private class ConfigWrapper

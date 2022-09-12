@@ -11,6 +11,8 @@ namespace SideMenu.Service
 {
     public class StartupLocation
     {
+        private const int AnimationShiftValue = 100;
+        
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -29,11 +31,10 @@ namespace SideMenu.Service
 
         public void InitializeStartupLocation(Window mainWindow)
         {
-            var totalWidth = Screen.AllScreens.Sum(x => x.Bounds.Width);
             var height = Screen.AllScreens.Last().Bounds.Height;
 
-            X = totalWidth - 2;
-            Y = (int)(height / 2 - (mainWindow.Height / 2));
+            X = GetLeftLocation();
+            Y = GetTopLocation(mainWindow);
 
             AnimationPositionShow = X - 100;
             AnimationPositionHide = X;
@@ -41,14 +42,24 @@ namespace SideMenu.Service
 
         public static void SaveCurrentPosition(Window mainWindow)
         {
-            StartupLocation startupLocation = new StartupLocation()
-            {
-                X = (int)mainWindow.Left,
-                Y = (int)mainWindow.Top,
-                AnimationPositionShow = (int)mainWindow.Left - 100,
-                AnimationPositionHide = (int)mainWindow.Left
-            };
+            StartupLocation startupLocation = new StartupLocation();
+            startupLocation.X = GetLeftLocation();
+            startupLocation.Y = (int)mainWindow.Top;
+            startupLocation.AnimationPositionShow = startupLocation.X - AnimationShiftValue;
+            startupLocation.AnimationPositionHide = startupLocation.X;
             startupLocation.SerializeConfigAsync();
+        }
+
+        private static int GetLeftLocation()
+        {
+            var totalWidth = Screen.AllScreens.Sum(x => x.Bounds.Width);
+            return totalWidth - 2;
+        }
+
+        private static int GetTopLocation(Window mainWindow)
+        {
+            var height = Screen.AllScreens.Last().Bounds.Height;
+            return (int)(height / 2 - (mainWindow.Height / 2));
         }
     }
 }

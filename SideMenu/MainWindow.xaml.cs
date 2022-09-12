@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using SideMenu.ViewModels;
 
 namespace SideMenu
@@ -22,9 +23,11 @@ namespace SideMenu
             InitializeComponent();
             MainWindowX.DataContext = MainWindowViewModel;
 
-
+            MainWindowX.MouseLeftButtonDown += CustomDragMove.CustomLeftButtonDown;
+            MainWindowX.MouseMove += CustomDragMove.CustomMouseMove;
+            MainWindowX.MouseLeftButtonUp += CustomDragMove.CustomLeftButtonUp;
         }
-
+        
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)
         {
             MainWindowViewModel.AddNewApp(e);

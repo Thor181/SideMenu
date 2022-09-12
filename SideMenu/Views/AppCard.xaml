@@ -23,7 +23,7 @@
                    TextWrapping="Wrap" TextAlignment="Center" TextTrimming="WordEllipsis" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Popup IsOpen="{Binding ElementName=MainUserContol, Path=IsMouseOver, Mode=OneWay}"
-               Placement="Bottom" AllowsTransparency="True" PopupAnimation="Fade" Focusable="False">
+               Placement="Left" AllowsTransparency="True" PopupAnimation="Fade" Focusable="False">
                 <Border CornerRadius="3" Background="White" BorderThickness="1" BorderBrush="#d1d1d1" Padding="1">
                     <TextBlock Text="{Binding ElementName=AppNameTextblock, Path=Text}"/>
                 </Border>

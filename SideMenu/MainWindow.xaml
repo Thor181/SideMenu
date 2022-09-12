@@ -7,7 +7,6 @@
         mc:Ignorable="d" x:Name="MainWindowX" 
         Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" ShowInTaskbar="False" 
         Height="450" Width="150" Opacity="0.01"
-        Left="{Binding StartupLocation.Location.X, Mode=OneWay}"  Top="500"
         AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         AllowDrop="True" Drop="AppsStackPanel_Drop" 
         Title="MainWindow"
@@ -84,7 +83,7 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Grid.Triggers>
-        <Border CornerRadius="18 0 0 18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
+        <Border CornerRadius="18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden" Margin="0 0 45 0" >
                 <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0" Padding="0 20"/>
             </ScrollViewer>

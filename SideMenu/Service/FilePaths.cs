@@ -23,6 +23,7 @@ namespace SideMenu.Service
                 return _logDirectory;
             }
         }
+
         public static string ConfigDirectory
         {
             get
@@ -34,6 +35,7 @@ namespace SideMenu.Service
                 return _configDirectory;
             }
         }
+
         public static string ConfigFile
         {
             get

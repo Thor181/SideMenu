@@ -5,6 +5,10 @@ using SideMenu.Models;
 using SideMenu.Extensions;
 using System.Windows.Threading;
 using SideMenu.Views;
+using System.Collections.Specialized;
+using SideMenu.Service;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SideMenu.ViewModels
 {
@@ -12,22 +16,41 @@ namespace SideMenu.ViewModels
     {
         public ObservableCollection<AppCard> AppCards { get; set; } = new ObservableCollection<AppCard>();
 
-        private Service.StartupLocation _startupLocation;
-
-        public Service.StartupLocation StartupLocation
-        {
-            get => _startupLocation ??= new Service.StartupLocation();
-        }
+        public StartupLocation StartupLocation { get; set; }
 
         public MainWindowViewModel(Dispatcher dispatcher)
         {
-            _ = AppCards.DeserializeConfigAsync(dispatcher);
-            AppCards.CollectionChanged += AppModels_CollectionChanged;
+            _ = InitializeComponents(dispatcher);
         }
 
-        private void AppModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async Task InitializeComponents(Dispatcher dispatcher)
         {
-            _ = AppCards.SerializeConfigAsync();
+            StartupLocation startupLocation = GetStartupLocation(dispatcher);
+
+            Application.Current.MainWindow.Left = startupLocation.X;
+            Application.Current.MainWindow.Top = startupLocation.Y;
+
+            StartupLocation = startupLocation;
+
+            await AppCards.DeserializeConfigAsync(dispatcher);
+            AppCards.CollectionChanged += async delegate (object sender, NotifyCollectionChangedEventArgs e)
+            {
+                await AppCards.SerializeConfigAsync();
+            };
+        }
+
+        private StartupLocation GetStartupLocation(Dispatcher dispatcher)
+        {
+            StartupLocation startupLocation = new StartupLocation();
+            startupLocation.DeserializeConfigAsync(dispatcher);
+
+            if (startupLocation.AnimationPositionHide + startupLocation.AnimationPositionShow + startupLocation.X + startupLocation.Y == 0)
+            {
+                startupLocation = new StartupLocation(Application.Current.MainWindow);
+                startupLocation.SerializeConfigAsync();
+            }
+
+            return startupLocation;
         }
 
         public void AddNewApp(DragEventArgs e)
@@ -42,12 +65,53 @@ namespace SideMenu.ViewModels
             }
             catch (Exception ex)
             {
-                Service.Logger.WriteException(ex);
+                Logger.WriteException(ex);
 #if DEBUG
                 throw;
 #endif
             }
         }
 
+        public void DragMove(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Window window && e.LeftButton == MouseButtonState.Pressed)
+            {
+                window.DragMove();
+            }
+        }
+    }
+    public class CustomDragMove
+    {
+        private static bool IsCaptured { get; set; }
+        private static int AnchorPoint { get; set; }
+
+        internal static void CustomLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Window window)
+            {
+                IsCaptured = true;
+                e.Handled = true;
+                AnchorPoint = (int)e.GetPosition(window).Y;
+            }
+        }
+
+        internal static void CustomMouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsCaptured && sender is Window window)
+            {
+                Point currentPosition = e.GetPosition(window);
+                window.Top = window.Top + (currentPosition.Y - AnchorPoint);
+            }
+        }
+
+        internal static void CustomLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Window window)
+            {
+                IsCaptured = false;
+                e.Handled = true;
+                StartupLocation.SaveCurrentPosition(window);
+            }
+        }
     }
 }

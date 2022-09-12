@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SideMenu.Extensions;
 
 namespace SideMenu.Service
 {
     public class StartupLocation
     {
-        public Point Location { get; set; }
-
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -20,36 +19,36 @@ namespace SideMenu.Service
 
         public StartupLocation()
         {
-            InitializeStartupLocation();
+
         }
 
-        public Point InitializeStartupLocation()
+        public StartupLocation(Window mainWindow)
         {
-            var totalWidth = Screen.AllScreens.Select(x => x.Bounds).GetSumWidth();
+            InitializeStartupLocation(mainWindow);
+        }
+
+        public void InitializeStartupLocation(Window mainWindow)
+        {
+            var totalWidth = Screen.AllScreens.Sum(x => x.Bounds.Width);
             var height = Screen.AllScreens.Last().Bounds.Height;
 
-            Location = new Point(totalWidth - 2, height/2);
+            X = totalWidth - 2;
+            Y = (int)(height / 2 - (mainWindow.Height / 2));
 
-            AnimationPositionShow = (int)Location.X - 100;
-            AnimationPositionHide = (int)Location.X;
-
-            X = (int)Location.X;
-            Y = (int)Location.Y;
-
-            return Location;
+            AnimationPositionShow = X - 100;
+            AnimationPositionHide = X;
         }
-    }
 
-    public static class ExtensionsLocation
-    {
-        public static int GetSumWidth(this IEnumerable<System.Drawing.Rectangle> rectangles)
+        public static void SaveCurrentPosition(Window mainWindow)
         {
-            int sum = 0;
-            foreach (var item in rectangles)
+            StartupLocation startupLocation = new StartupLocation()
             {
-                sum += item.Width;
-            }
-            return sum;
+                X = (int)mainWindow.Left,
+                Y = (int)mainWindow.Top,
+                AnimationPositionShow = (int)mainWindow.Left - 100,
+                AnimationPositionHide = (int)mainWindow.Left
+            };
+            startupLocation.SerializeConfigAsync();
         }
     }
 }

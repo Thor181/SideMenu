@@ -84,6 +84,7 @@ namespace SideMenu.ViewModels
             }
         }
     }
+
     public class CustomDragMove
     {
         private static bool IsCaptured { get; set; }

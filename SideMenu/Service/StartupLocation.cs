@@ -31,8 +31,6 @@ namespace SideMenu.Service
 
         public void InitializeStartupLocation(Window mainWindow)
         {
-            var height = Screen.AllScreens.Last().Bounds.Height;
-
             X = GetLeftLocation();
             Y = GetTopLocation(mainWindow);
 

@@ -26,6 +26,7 @@ namespace SideMenu
             MainWindowX.MouseLeftButtonDown += CustomDragMove.CustomLeftButtonDown;
             MainWindowX.MouseMove += CustomDragMove.CustomMouseMove;
             MainWindowX.MouseLeftButtonUp += CustomDragMove.CustomLeftButtonUp;
+
         }
         
         private void AppsStackPanel_Drop(object sender, DragEventArgs e)

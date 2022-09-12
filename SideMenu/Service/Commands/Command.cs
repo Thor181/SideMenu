@@ -13,6 +13,11 @@ namespace SideMenu.Service
         
         protected object _parameter;
 
+        public Command()
+        {
+
+        }
+
         public Command(object parameter)
         {
             _parameter = parameter;
@@ -29,6 +34,5 @@ namespace SideMenu.Service
         {
             _action.Invoke(_parameter);
         }
-
     }
 }

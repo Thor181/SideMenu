@@ -18,9 +18,12 @@ namespace SideMenu.ViewModels
 
         public StartupLocation StartupLocation { get; set; }
 
+        public CloseAppCommand CloseAppCommand { get; set; }
+
         public MainWindowViewModel(Dispatcher dispatcher)
         {
             _ = InitializeComponents(dispatcher);
+            CloseAppCommand = new CloseAppCommand();
         }
 
         private async Task InitializeComponents(Dispatcher dispatcher)

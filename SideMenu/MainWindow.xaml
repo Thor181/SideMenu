@@ -4,14 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SideMenu" xmlns:views="clr-namespace:SideMenu.Views"
+        xmlns:notify="http://www.hardcodet.net/taskbar" xmlns:proxy="clr-namespace:SideMenu.Service"
         mc:Ignorable="d" x:Name="MainWindowX" 
         Topmost="True" ResizeMode="NoResize" WindowStartupLocation="Manual" ShowInTaskbar="False" 
         Height="450" Width="150" Opacity="0.01"
         AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         AllowDrop="True" Drop="AppsStackPanel_Drop" 
-        Title="MainWindow"
+        Title="SideMenu"
         BorderThickness="0" BorderBrush="Transparent">
-
+    <Window.Resources>
+        <proxy:BindingProxy x:Key="Proxy" Data="{Binding}"/>
+        
+        <ContextMenu x:Key="TaskBarIconContextMenu">
+            <MenuItem x:Name="CloseMenuItem" Command="{Binding Source={StaticResource Proxy}, Path=Data.CloseAppCommand}"  Header="Close"/>
+        </ContextMenu>
+    </Window.Resources>
     <Grid x:Name="MainGrid" Background="Transparent" >
         <Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
@@ -83,6 +90,15 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Grid.Triggers>
+        
+        <notify:TaskbarIcon IconSource="Resources/folder.ico"
+                            ToolTipText="Side menu"
+                            ContextMenu="{StaticResource TaskBarIconContextMenu}"
+                            
+                            MenuActivation="LeftOrRightClick"
+                            >
+        </notify:TaskbarIcon>
+        
         <Border CornerRadius="18" Background="White" BorderThickness="0" BorderBrush="Transparent" >
             <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalScrollBarVisibility="Hidden" Margin="0 0 45 0" >
                 <ItemsControl ItemsSource="{Binding AppCards}" BorderThickness="0" Padding="0 20"/>

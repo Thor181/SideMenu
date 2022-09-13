@@ -24,5 +24,4 @@ namespace SideMenu.Extensions
             return wshShortcut.TargetPath;
         }
     }
-    
 }

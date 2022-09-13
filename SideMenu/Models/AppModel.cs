@@ -1,7 +1,7 @@
-﻿using SideMenu.Extensions;
-using SideMenu.Service;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Media.Imaging;
+
+using SideMenu.Extensions;
 
 namespace SideMenu.Models
 {
@@ -15,11 +15,13 @@ namespace SideMenu.Models
         {
             FilePath = filePath;
             AppName = filePath.GetAppName();
+
             if (Directory.Exists(filePath))
             {
                 AppImage = new BitmapImage(new System.Uri("\\Resources\\folder.png", System.UriKind.Relative));
                 return;
             }
+
             AppImage = filePath.GetIcon();
         }
     }

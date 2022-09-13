@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SideMenu.Service
 {
@@ -17,9 +13,8 @@ namespace SideMenu.Service
             get
             {
                 if (!Directory.Exists(_logDirectory))
-                {
                     Directory.CreateDirectory(_logDirectory);
-                }
+
                 return _logDirectory;
             }
         }
@@ -29,9 +24,8 @@ namespace SideMenu.Service
             get
             {
                 if (!Directory.Exists(_configDirectory))
-                {
                     Directory.CreateDirectory(_configDirectory);
-                }
+
                 return _configDirectory;
             }
         }
@@ -41,10 +35,10 @@ namespace SideMenu.Service
             get
             {
                 string filePath = $"{ConfigDirectory}\\config.json";
+
                 if (!File.Exists(filePath))
-                {
                     File.Create(filePath).Dispose();
-                }
+
                 return filePath;
             }
         }

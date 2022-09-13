@@ -14,7 +14,6 @@
         BorderThickness="0" BorderBrush="Transparent">
     <Window.Resources>
         <proxy:BindingProxy x:Key="Proxy" Data="{Binding}"/>
-        
         <ContextMenu x:Key="TaskBarIconContextMenu">
             <MenuItem x:Name="CloseMenuItem" Command="{Binding Source={StaticResource Proxy}, Path=Data.CloseAppCommand}"  Header="Close"/>
         </ContextMenu>
@@ -94,9 +93,7 @@
         <notify:TaskbarIcon IconSource="Resources/folder.ico"
                             ToolTipText="Side menu"
                             ContextMenu="{StaticResource TaskBarIconContextMenu}"
-                            
-                            MenuActivation="LeftOrRightClick"
-                            >
+                            MenuActivation="LeftOrRightClick">
         </notify:TaskbarIcon>
         
         <Border CornerRadius="18" Background="White" BorderThickness="0" BorderBrush="Transparent" >

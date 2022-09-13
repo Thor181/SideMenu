@@ -1,11 +1,12 @@
-﻿using SideMenu.Models;
-using SideMenu.Service;
-using SideMenu.Views;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+
+using SideMenu.Models;
+using SideMenu.Service;
+using SideMenu.Views;
 
 namespace SideMenu.ViewModels
 {
@@ -38,6 +39,7 @@ namespace SideMenu.ViewModels
                         Placement = PlacementMode.AbsolutePoint
                     };
                 }
+
                 return _popupInstance;
             }
             set { _popupInstance = value; }
@@ -51,9 +53,7 @@ namespace SideMenu.ViewModels
                 PopupDrag.SetPopupOffset();
                 
                 if (!grid.Children.Contains(PopupDrag))
-                {
                     grid.Children.Add(PopupDrag);
-                }
             }
         }
 
@@ -67,9 +67,7 @@ namespace SideMenu.ViewModels
                 var mainWindowViewModel = App.Current.MainWindow.DataContext as MainWindowViewModel;
                 
                 if (mainWindowViewModel != null)
-                {
                     mainWindowViewModel.RemoveAppCard(_appFilePath);
-                }
             }
 
             grid.Children.Remove(PopupDrag);
@@ -112,7 +110,7 @@ namespace SideMenu.ViewModels
 
         public static bool operator ==(CustomBounds bounds, System.Drawing.Point point)
         {
-            if ((bounds.Left > point.X && bounds.Right < point.X) && (bounds.Top > point.Y && bounds.Bottom < point.Y))
+            if (bounds.Left > point.X && bounds.Right < point.X && bounds.Top > point.Y && bounds.Bottom < point.Y)
             {
                 return true;
             }

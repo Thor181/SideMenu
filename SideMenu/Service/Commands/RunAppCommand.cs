@@ -8,6 +8,7 @@ namespace SideMenu.Service
         {
             _action = RunApp;
         }
+
         public void RunApp(object parameter)
         {
             if (parameter == null || parameter.GetType() != typeof(string))

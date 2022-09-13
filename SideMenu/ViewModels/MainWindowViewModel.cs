@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows;
-using SideMenu.Models;
-using SideMenu.Extensions;
-using System.Windows.Threading;
-using SideMenu.Views;
 using System.Collections.Specialized;
-using SideMenu.Service;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Threading;
+
+using SideMenu.Extensions;
+using SideMenu.Service;
+using SideMenu.Views;
 
 namespace SideMenu.ViewModels
 {
     public class MainWindowViewModel
     {
-        public ObservableCollection<AppCard> AppCards { get; set; } = new ObservableCollection<AppCard>();
+        public ObservableCollection<AppCard> AppCards { get; set; } 
 
         public StartupLocation StartupLocation { get; set; }
 
@@ -25,6 +24,8 @@ namespace SideMenu.ViewModels
         public MainWindowViewModel(Dispatcher dispatcher)
         {
             InitializeComponents(dispatcher);
+
+            AppCards = new ObservableCollection<AppCard>();
             CloseAppCommand = new CloseAppCommand();
         }
 

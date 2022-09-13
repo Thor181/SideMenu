@@ -1,10 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Controls;
-using SideMenu.ViewModels;
-using SideMenu.Models;
-using System.Windows.Controls.Primitives;
-using System.Runtime.InteropServices;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
+
+using SideMenu.Models;
+using SideMenu.ViewModels;
 
 namespace SideMenu.Views
 {

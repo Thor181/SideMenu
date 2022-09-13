@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:SideMenu.Views"
              mc:Ignorable="d" x:Name="MainUserContol"
              Height="50" Width="70" Margin="0 2 0 0"
-             Style="{StaticResource AppCard}" Cursor="Hand"
-             >
+             Style="{StaticResource AppCard}" Cursor="Hand">
 
     <Button Style="{StaticResource EmptyButton}" Command="{Binding ClickCommand}">
         <Grid x:Name="MainGrid">
@@ -23,7 +22,7 @@
                    TextWrapping="Wrap" TextAlignment="Center" TextTrimming="WordEllipsis" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Popup IsOpen="{Binding ElementName=MainUserContol, Path=IsMouseOver, Mode=OneWay}"
-               Placement="Left" AllowsTransparency="True" PopupAnimation="Fade" Focusable="False">
+                   Placement="Left" AllowsTransparency="True" PopupAnimation="Fade" Focusable="False">
                 <Border CornerRadius="3" Background="White" BorderThickness="1" BorderBrush="#d1d1d1" Padding="1">
                     <TextBlock Text="{Binding ElementName=AppNameTextblock, Path=Text}"/>
                 </Border>

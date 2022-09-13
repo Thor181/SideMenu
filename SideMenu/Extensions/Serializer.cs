@@ -17,23 +17,23 @@ namespace SideMenu.Extensions
 {
     public static class Serializer
     {
-        public static async Task SerializeConfigAsync(this ObservableCollection<AppCard> collection)
+        public static void SerializeConfig(this ObservableCollection<AppCard> collection)
         {
-            await CommonSerialize(appCards: collection);
+            CommonSerialize(appCards: collection);
         }
 
-        public static async Task SerializeConfigAsync(this StartupLocation startupLocation)
+        public static void SerializeConfig(this StartupLocation startupLocation)
         {
-            await CommonSerialize(startupLocation);
+            CommonSerialize(startupLocation);
         }
 
-        private static async Task CommonSerialize(StartupLocation startupLocation = null, ObservableCollection<AppCard> appCards = null)
+        private static void CommonSerialize(StartupLocation startupLocation = null, ObservableCollection<AppCard> appCards = null)
         {
             ObservableCollection<AppCard> appCardsDes = new ObservableCollection<AppCard>();
-            await appCardsDes.DeserializeConfigAsync(Dispatcher.CurrentDispatcher);
+            appCardsDes.DeserializeConfig(Dispatcher.CurrentDispatcher);
 
             StartupLocation startupLocationDes = new StartupLocation(Application.Current.MainWindow);
-            await startupLocationDes.DeserializeConfigAsync(Dispatcher.CurrentDispatcher);
+            startupLocationDes.DeserializeConfig(Dispatcher.CurrentDispatcher);
 
             ConfigWrapper configWrapper = new ConfigWrapper();
             configWrapper.SetAppCards(appCards ?? appCardsDes);
@@ -46,7 +46,7 @@ namespace SideMenu.Extensions
             }
         }
 
-        public static async Task DeserializeConfigAsync(this ObservableCollection<AppCard> appCardCollection, Dispatcher dispatcher)
+        public static void DeserializeConfig(this ObservableCollection<AppCard> appCardCollection, Dispatcher dispatcher)
         {
             if (new FileInfo(FilePaths.ConfigFile).Length == 0)
                 return;
@@ -61,7 +61,7 @@ namespace SideMenu.Extensions
             }
         }
 
-        public static async Task DeserializeConfigAsync(this StartupLocation startupLocation, Dispatcher dispatcher)
+        public static void DeserializeConfig(this StartupLocation startupLocation, Dispatcher dispatcher)
         {
             if (new FileInfo(FilePaths.ConfigFile).Length == 0)
                 return;
@@ -73,7 +73,6 @@ namespace SideMenu.Extensions
                 startupLocation.Y = configWrapper.StartupLocation.Y;
                 startupLocation.AnimationPositionShow = configWrapper.StartupLocation.AnimationPositionShow;
                 startupLocation.AnimationPositionHide = configWrapper.StartupLocation.AnimationPositionHide;
-                //startupLocation = configWrapper.StartupLocation;
             }
         }
 

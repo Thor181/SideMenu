@@ -10,6 +10,7 @@ using SideMenu.Service;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
+using System.Reflection;
 
 namespace SideMenu.ViewModels
 {
@@ -23,11 +24,11 @@ namespace SideMenu.ViewModels
 
         public MainWindowViewModel(Dispatcher dispatcher)
         {
-            _ = InitializeComponents(dispatcher);
+            InitializeComponents(dispatcher);
             CloseAppCommand = new CloseAppCommand();
         }
 
-        private async Task InitializeComponents(Dispatcher dispatcher)
+        private void InitializeComponents(Dispatcher dispatcher)
         {
             StartupLocation startupLocation = GetStartupLocation(dispatcher);
 
@@ -36,22 +37,22 @@ namespace SideMenu.ViewModels
 
             StartupLocation = startupLocation;
 
-            await AppCards.DeserializeConfigAsync(dispatcher);
-            AppCards.CollectionChanged += async delegate (object sender, NotifyCollectionChangedEventArgs e)
+            AppCards.DeserializeConfig(dispatcher);
+            AppCards.CollectionChanged += delegate (object sender, NotifyCollectionChangedEventArgs e)
             {
-                await AppCards.SerializeConfigAsync();
+                AppCards.SerializeConfig();
             };
         }
 
         private StartupLocation GetStartupLocation(Dispatcher dispatcher)
         {
             StartupLocation startupLocation = new StartupLocation();
-            startupLocation.DeserializeConfigAsync(dispatcher);
+            startupLocation.DeserializeConfig(dispatcher);
 
             if (startupLocation.AnimationPositionHide + startupLocation.AnimationPositionShow + startupLocation.X + startupLocation.Y == 0)
             {
                 startupLocation = new StartupLocation(Application.Current.MainWindow);
-                startupLocation.SerializeConfigAsync();
+                startupLocation.SerializeConfig();
             }
 
             return startupLocation;
@@ -92,6 +93,19 @@ namespace SideMenu.ViewModels
             {
                 AppCards.Remove(removableItem);
             }
+        }
+
+        public void AppLoaded(object sender, RoutedEventArgs e)
+        {
+            InstallToStartup();
+        }
+
+        private void InstallToStartup()
+        {
+            string subkeyName = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(subkeyName, true);
+            Assembly currentAssembly = Assembly.GetExecutingAssembly();
+            key.SetValue(currentAssembly.GetName().Name, currentAssembly.Location);
         }
     }
 

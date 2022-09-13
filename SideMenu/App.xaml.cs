@@ -10,6 +10,6 @@ namespace SideMenu
 {
     public partial class App : Application
     {
-        
+
     }
 }

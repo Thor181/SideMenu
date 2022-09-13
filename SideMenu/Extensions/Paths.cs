@@ -7,7 +7,14 @@ namespace SideMenu.Extensions
     {
         public static string GetAppName(this string filePath)
         {
-            return filePath.Split("\\").Last().Split('.').First();
+            string name = filePath.Split("\\").Last().Split('.').First();
+
+            if (string.IsNullOrEmpty(name))
+            {
+                return filePath;
+            }
+
+            return name;
         }
 
         public static string GetFilePathFromShortcut(this string shortcutPath)

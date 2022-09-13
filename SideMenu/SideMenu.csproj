@@ -5,11 +5,23 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <SignAssembly>true</SignAssembly>
+    <ApplicationIcon>folder.ico</ApplicationIcon>
+    <Authors>ArtemThor</Authors>
+    <Company />
+    <Product />
+    <PackageProjectUrl>https://github.com/Thor181/SideMenu</PackageProjectUrl>
+    <PackageIcon>folder.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/Thor181/SideMenu</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\folder.ico" />
     <None Remove="Resources\folder.png" />
+    <None Include="D:\Pictures\folder.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

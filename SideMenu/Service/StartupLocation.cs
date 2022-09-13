@@ -45,7 +45,8 @@ namespace SideMenu.Service
             startupLocation.Y = (int)mainWindow.Top;
             startupLocation.AnimationPositionShow = startupLocation.X - AnimationShiftValue;
             startupLocation.AnimationPositionHide = startupLocation.X;
-            startupLocation.SerializeConfigAsync();
+            
+            startupLocation.SerializeConfig();
         }
 
         private static int GetLeftLocation()

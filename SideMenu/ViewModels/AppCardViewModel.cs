@@ -59,25 +59,30 @@ namespace SideMenu.ViewModels
 
         public void RemovePopupViewDrag(Grid grid)
         {
-            Bounds bounds = GetMainWindowBounds();
+            CustomBounds bounds = GetMainWindowBounds();
             System.Drawing.Point currentPoint = Extensions.GetCursorPos();
 
             if (bounds != currentPoint)
             {
-
+                var mainWindowViewModel = App.Current.MainWindow.DataContext as MainWindowViewModel;
+                
+                if (mainWindowViewModel != null)
+                {
+                    mainWindowViewModel.RemoveAppCard(_appFilePath);
+                }
             }
+
             grid.Children.Remove(PopupDrag);
             PopupDrag.IsOpen = false;
             PopupDrag = null;
         }
 
-        private static Bounds GetMainWindowBounds()
+        private static CustomBounds GetMainWindowBounds()
         {
             Window mainWindow = App.Current.MainWindow;
-
             StartupLocation startupLocation = new StartupLocation(mainWindow);
 
-            Bounds bounds = new Bounds()
+            CustomBounds bounds = new CustomBounds()
             {
                 Left = startupLocation.X,
                 Right = startupLocation.X + (int)mainWindow.Width,
@@ -89,25 +94,25 @@ namespace SideMenu.ViewModels
         }
     }
 
-    public struct Bounds
+    public struct CustomBounds
     {
         public int Left { get; set; }
         public int Right { get; set; }
         public int Top { get; set; }
         public int Bottom { get; set; }
 
-        public static bool operator !=(Bounds bounds, Point point)
+        public static bool operator !=(CustomBounds bounds, System.Drawing.Point point)
         {
-            if ((point.X < bounds.Left || point.X > bounds.Right) && (point.Y < bounds.Top || point.Y > bounds.Bottom))
+            if ((bounds.Left < point.X || bounds.Right > point.X) && (bounds.Top < point.Y || bounds.Bottom > point.Y))
             {
                 return true;
             }
             return false;
         }
 
-        public static bool operator ==(Bounds bounds, Point point)
+        public static bool operator ==(CustomBounds bounds, System.Drawing.Point point)
         {
-            if ((point.X > bounds.Left && point.X < bounds.Right) && (point.Y > bounds.Top && point.Y < bounds.Bottom))
+            if ((bounds.Left > point.X && bounds.Right < point.X) && (bounds.Top > point.Y && bounds.Bottom < point.Y))
             {
                 return true;
             }

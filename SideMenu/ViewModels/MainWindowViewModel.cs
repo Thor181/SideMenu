@@ -9,6 +9,7 @@ using System.Collections.Specialized;
 using SideMenu.Service;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Linq;
 
 namespace SideMenu.ViewModels
 {
@@ -81,6 +82,15 @@ namespace SideMenu.ViewModels
             if (sender is Window window && e.LeftButton == MouseButtonState.Pressed)
             {
                 window.DragMove();
+            }
+        }
+
+        public void RemoveAppCard(string filePath)
+        {
+            AppCard removableItem = AppCards.Where(i => i.AppCardViewModel.AppModel.FilePath == filePath).FirstOrDefault();
+            if (removableItem != null)
+            {
+                AppCards.Remove(removableItem);
             }
         }
     }

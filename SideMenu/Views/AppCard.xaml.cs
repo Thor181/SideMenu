@@ -37,6 +37,4 @@ namespace SideMenu.Views
             AppCardViewModel.RemovePopupViewDrag(MainGrid);
         }
     }
-
-    
 }

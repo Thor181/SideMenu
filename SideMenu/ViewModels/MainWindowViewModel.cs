@@ -23,9 +23,9 @@ namespace SideMenu.ViewModels
 
         public MainWindowViewModel(Dispatcher dispatcher)
         {
-            InitializeComponents(dispatcher);
-
             AppCards = new ObservableCollection<AppCard>();
+
+            InitializeComponents(dispatcher);
             CloseAppCommand = new CloseAppCommand();
         }
 
@@ -103,6 +103,7 @@ namespace SideMenu.ViewModels
 
         private void InstallToStartup()
         {
+            //TODO: Add check for autorun or not to task bar icon
             string subkeyName = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(subkeyName, true);
             Assembly currentAssembly = Assembly.GetExecutingAssembly();

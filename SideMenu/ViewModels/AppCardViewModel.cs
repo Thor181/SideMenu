@@ -62,7 +62,7 @@ namespace SideMenu.ViewModels
             CustomBounds bounds = GetMainWindowBounds();
             System.Drawing.Point currentPoint = Extensions.GetCursorPos();
 
-            if (bounds != currentPoint)
+            if (currentPoint != bounds)
             {
                 var mainWindowViewModel = App.Current.MainWindow.DataContext as MainWindowViewModel;
                 
@@ -78,14 +78,13 @@ namespace SideMenu.ViewModels
         private static CustomBounds GetMainWindowBounds()
         {
             Window mainWindow = App.Current.MainWindow;
-            StartupLocation startupLocation = new StartupLocation(mainWindow);
 
             CustomBounds bounds = new CustomBounds()
             {
-                Left = startupLocation.X,
-                Right = startupLocation.X + (int)mainWindow.Width,
-                Top = startupLocation.Y,
-                Bottom = startupLocation.Y + (int)mainWindow.Height
+                Left = (int)mainWindow.Left,
+                Right = (int)mainWindow.Left + (int)mainWindow.Width,
+                Top = (int)mainWindow.Top,
+                Bottom = (int)mainWindow.Top + (int)mainWindow.Height
             };
 
             return bounds;
@@ -99,18 +98,18 @@ namespace SideMenu.ViewModels
         public int Top { get; set; }
         public int Bottom { get; set; }
 
-        public static bool operator !=(CustomBounds bounds, System.Drawing.Point point)
+        public static bool operator !=(System.Drawing.Point point, CustomBounds bounds)
         {
-            if ((bounds.Left < point.X || bounds.Right > point.X) && (bounds.Top < point.Y || bounds.Bottom > point.Y))
+            if ((point.X < bounds.Left || point.X > bounds.Right) || (point.Y < bounds.Top || point.Y > bounds.Bottom))
             {
                 return true;
             }
             return false;
         }
 
-        public static bool operator ==(CustomBounds bounds, System.Drawing.Point point)
+        public static bool operator ==(System.Drawing.Point point, CustomBounds bounds)
         {
-            if (bounds.Left > point.X && bounds.Right < point.X && bounds.Top > point.Y && bounds.Bottom < point.Y)
+            if (point.X > bounds.Left && point.X < bounds.Right && point.Y > bounds.Top && point.Y < bounds.Bottom)
             {
                 return true;
             }

@@ -15,7 +15,7 @@ namespace SideMenu.Models
         {
             FilePath = filePath;
             AppName = filePath.GetAppName();
-
+            //TODO: realize individual file to path to custom pictures
             if (Directory.Exists(filePath))
             {
                 AppImage = new BitmapImage(new System.Uri("\\Resources\\folder.png", System.UriKind.Relative));

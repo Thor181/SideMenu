@@ -98,7 +98,7 @@ namespace SideMenu.ViewModels
 
         public void AppLoaded(object sender, RoutedEventArgs e)
         {
-            InstallToStartup();
+            
         }
 
         private void InstallToStartup()

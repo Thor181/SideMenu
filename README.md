@@ -1,6 +1,6 @@
 # SideMenu
 
-Required .NET 5 
+Required .NET 5  
 
 ![ezgif-3-ea786e2a41](https://user-images.githubusercontent.com/63106764/223401276-b0858190-5401-4452-9963-db81f79e3927.gif)
 
